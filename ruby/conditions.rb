@@ -1,4 +1,4 @@
-puts "Conditions IF - ELIF - ELSE"
+puts "Conditions IF - ELSIF - ELSE"
 
 number = 123
 
