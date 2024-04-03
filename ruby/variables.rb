@@ -1,4 +1,4 @@
-puts "Variables and Data Types"
+puts "Topic: Variables and Data Types"
 
 integer = 100
 puts integer.class
