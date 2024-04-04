@@ -1,4 +1,4 @@
-puts "Conditions IF - ELSIF - ELSE"
+puts "Topic: Conditions"
 
 number = 123
 if (number % 2 == 0)
@@ -10,7 +10,7 @@ else
 end
 
 
-puts "Ternary Operator"
+puts "Topic: Ternary Operator"
 
 boolean = (number % 2 == 0) ? true : false
 puts boolean
