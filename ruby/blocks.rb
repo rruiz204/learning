@@ -7,6 +7,6 @@ def blockExample()
   puts "After Block"
 end
 
-blockExample { |a, b, c|
+blockExample do |a, b, c|
   puts "a: #{a}, b: #{b}, c: #{c}"
-}
+end
