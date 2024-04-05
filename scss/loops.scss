@@ -1,0 +1,32 @@
+
+/* Topic Loops */
+// Variables
+$colors: (
+  'primary': #007bff,
+  'secondary': #6c757d,
+  'success': #28a745,
+  'danger': #dc3545
+);
+
+// Mixin para generar clases de botones
+@mixin generate-button-classes {
+  @each $name, $color in $colors {
+    .btn-#{$name} {
+      color: #fff;
+      background-color: $color;
+      border-color: $color;
+      padding: 10px 20px;
+      border-radius: 5px;
+      font-size: 16px;
+      font-weight: bold;
+      transition: all 0.3s ease-in-out;
+
+      &:hover {
+        filter: brightness(90%);
+      }
+    }
+  }
+}
+
+// Generar las clases de botones
+@include generate-button-classes;
