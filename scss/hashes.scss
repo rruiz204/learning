@@ -1,0 +1,54 @@
+/* Topic: Map as Hashes */
+
+$button-config: (
+  'primary': (
+    'color': #fff,
+    'background-color': #007bff,
+    'border-color': #007bff,
+    'hover-color': #f1f1f1,
+    'hover-background-color': #0056b3,
+    'hover-border-color': #0056b3
+  ),
+  'secondary': (
+    'color': #fff,
+    'background-color': #6c757d,
+    'border-color': #6c757d,
+    'hover-color': #f1f1f1,
+    'hover-background-color': #545b62,
+    'hover-border-color': #4e555b
+  ),
+  'success': (
+    'color': #fff,
+    'background-color': #28a745,
+    'border-color': #28a745,
+    'hover-color': #f1f1f1,
+    'hover-background-color': #218838,
+    'hover-border-color': #1e7e34
+  ),
+  'danger': (
+    'color': #fff,
+    'background-color': #dc3545,
+    'border-color': #dc3545,
+    'hover-color': #f1f1f1,
+    'hover-background-color': #c82333,
+    'hover-border-color': #bd2130
+  )
+);
+
+@mixin button($type) {
+  $config: map-get($button-config, $type);
+  color: map-get($config, 'color');
+  background-color: map-get($config, 'background-color');
+  border-color: map-get($config, 'border-color');
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: bold;
+  transition: all 0.3s ease-in-out;
+
+  &:hover {
+    color: map-get($config, 'hover-color');
+    background-color: map-get($config, 'hover-background-color');
+    border-color: map-get($config, 'hover-border-color');
+  }
+}
