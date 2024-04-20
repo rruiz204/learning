@@ -7,6 +7,7 @@ interface Post {
   content: string;
 }
 
+
 class Server {
   database: Post[] = [
     { id: 1, author: "author1", title: "some title 1", content: "some content" },
@@ -29,11 +30,22 @@ class Server {
   }
 }
 
-class Proxy {
+
+class cstProxy {
   server = new Server();
 
   getPosts(user: string): void {
     if (this.authenticate(user)) this.server.getPosts();
+    else console.log("Unauthorized User");
+  }
+
+  addPost(newPost: Post, user: string): void {
+    if (this.authenticate(user)) this.server.addPost(newPost);
+    else console.log("Unauthorized User");
+  }
+
+  deletePost(id: number, user: string): void {
+    if (this.authenticate(user)) this.server.deletePost(id);
     else console.log("Unauthorized User");
   }
 
@@ -42,5 +54,6 @@ class Proxy {
   }
 }
 
-const proxy = new Proxy();
+
+const proxy = new cstProxy();
 proxy.getPosts("user99");
