@@ -1,12 +1,19 @@
-import { faker } from "@faker-js/faker"
+interface ICharacter {
+  name: string;
+  age: number;
+  gender: string;
+}
 
-const CharacterFactory = () => {
+const CharacterFactory = (name?: string, age?: number, gender?: string): ICharacter => {
   return {
-    name: faker.person.fullName(),
-    birthday: faker.date.birthdate(),
-    gender: faker.person.sex(),
+    name: name || "test name",
+    age: age || 28,
+    gender: gender || "M"
   }
 }
 
-const charater = CharacterFactory();
-console.log(charater);
+const character1 = CharacterFactory("marco", 19, "M");
+console.log(character1.name);
+
+const character2 = CharacterFactory();
+console.log(character2.name);
