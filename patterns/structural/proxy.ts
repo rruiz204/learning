@@ -1,57 +1,46 @@
-import { faker } from "@faker-js/faker";
-
-const users = ["user1", "user2", "user3"];
-let authorization: boolean = false;
+const users: string[] = ["user1", "user2", "user3"];
 
 interface Post {
   id: number;
-  owner: string;
+  author: string;
   title: string;
   content: string;
 }
 
-const PostFactory = (index: number): Post => {
-  return {
-    id: faker.number.int(),
-    owner: users[index],
-    title: faker.lorem.words(3),
-    content: faker.lorem.words(6)
-  }
-}
-
-let posts: Post[] = [];
-
-const customProxy = (username: string) => {
-  if (!users.includes(username)) authorization = false;
-  else authorization = true;
-}
-
 class Server {
-  static createPost(newPost: Post, username: string) {
-    customProxy(username);
-    if (!posts.find((post: Post) => post.id == newPost.id) && authorization) {
-      posts.push(newPost);
-      console.log("Saved Post");
-    } else if (!authorization) {
-      console.log("Authorization Error");
-    } else {
-      console.log("Post Redundancy");
-    }
+  database: Post[] = [
+    { id: 1, author: "author1", title: "some title 1", content: "some content" },
+    { id: 2, author: "author1", title: "some title 2", content: "some content" },
+    { id: 3, author: "author1", title: "some title 3", content: "some content" },
+  ]
+
+  getPosts(): void {
+    console.log(this.database);
   }
 
-  static deletePost(id: number, username: string) {
-    customProxy(username);
-    if (authorization) {
-      posts = posts.filter((post: Post) => post.id != id);
-      console.log("Deleted Post");
-    } else {
-      console.log("Authorization Error");
-    }
+  addPost(newPost: Post): void {
+    this.database.push(newPost);
+    console.log("New Post Added");
+  }
+
+  deletePost(id: number): void {
+    this.database = this.database.filter((post: Post) => post.id != id);
+    console.log("Post Deleted");
   }
 }
 
-const post1 = PostFactory(0);
-Server.createPost(post1, users[0]);
+class Proxy {
+  server = new Server();
 
-console.log(posts);
-Server.createPost(post1, users[7]);
+  getPosts(user: string): void {
+    if (this.authenticate(user)) this.server.getPosts();
+    else console.log("Unauthorized User");
+  }
+
+  authenticate(user: string): boolean {
+    return users.includes(user);
+  }
+}
+
+const proxy = new Proxy();
+proxy.getPosts("user99");
