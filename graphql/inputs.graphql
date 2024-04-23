@@ -1,0 +1,24 @@
+input User {
+  username: String!
+  email: String!
+  age: Int!
+}
+
+input Product {
+  name: String!
+  price: Float!
+  stock: Int!
+}
+
+enum OrderState {
+  PENDING
+  COMPLETED
+  CANCELED
+}
+
+input Order {
+  date: String!
+  user: User!
+  products: [Product!]!
+  state: OrderState!
+}
