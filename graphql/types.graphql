@@ -1,0 +1,27 @@
+type User {
+  id: ID!
+  username: String!
+  email: String!
+  age: Int
+}
+
+type Product {
+  id: ID!
+  name: String!
+  price: Float!
+  stock: Int!
+}
+
+enum OrderState {
+  PENDING
+  COMPLETED
+  CANCELED
+}
+
+type Order {
+  id: ID!
+  date: String!
+  user: User!
+  products: [Product!]!
+  state: OrderState!
+}
