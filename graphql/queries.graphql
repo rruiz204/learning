@@ -1,0 +1,41 @@
+type User {
+  id: ID!
+  name: String!
+}
+
+enum EnumGender {
+  ACTION
+  MISTERY
+  DRAMA
+}
+
+type Book {
+  id: ID!
+  author: User!
+  gender: EnumGender!
+}
+
+type Query {
+  book(id: ID!): Book!
+  books(limit: Int): [Book!]!
+}
+
+fragment BookFragment on Book {
+  title
+  author {
+    name
+  }
+  gender
+}
+
+query getBook($id: Int) {
+  book(id: $id) {
+    ...BookFragment
+  }
+}
+
+query getBooks($limit: Int) {
+  books(limit: $limit) {
+    ...BookFragment
+  }
+}
