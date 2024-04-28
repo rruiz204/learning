@@ -1,7 +1,21 @@
+type User {
+  id: ID!
+  username: String!
+  email: String!
+  age: Int
+}
+
 input User {
   username: String!
   email: String!
   age: Int!
+}
+
+type Product {
+  id: ID!
+  name: String!
+  price: Float!
+  stock: Int!
 }
 
 input Product {
@@ -16,9 +30,21 @@ enum OrderState {
   CANCELED
 }
 
-input Order {
+type Order {
+  id: ID!
   date: String!
   user: User!
   products: [Product!]!
   state: OrderState!
+}
+
+input OrderInput {
+  date: String!
+  user: User!
+  products: [Product!]!
+  state: OrderState!
+}
+
+type Mutation {
+  createOrder(orderInput: OrderInput!): Order
 }
