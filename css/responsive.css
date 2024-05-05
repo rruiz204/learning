@@ -1,0 +1,23 @@
+.block {
+  border: 2px solid #000;
+  width: 400px;
+  height: 400px;
+}
+
+@media (width < 500px) {
+  .block {
+    background-color: red;
+  }
+}
+
+@media (500px < width < 900px) {
+  .block {
+    background-color: green;
+  } 
+}
+
+@media (width > 900px) {
+  .block {
+    background-color: blue;
+  }
+}
